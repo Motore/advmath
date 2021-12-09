@@ -46,4 +46,5 @@ void Game::ComposeFrame()
 	{
 		gfx.DrawLine( { 100.0f,100.0f },(Vec2)wnd.mouse.GetPos(),Colors::Yellow );
 	}
+	gfx.DrawLine(1.0f / 6.0f, -1.0f, Colors::Yellow);
 }

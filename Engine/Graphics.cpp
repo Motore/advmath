@@ -357,6 +357,62 @@ void Graphics::DrawLine( Vec2 p0,Vec2 p1,Color c )
 	}
 }
 
+void Graphics::DrawLine(float k, float n, Color c)
+{
+	const Vec2 center = { ScreenWidth / 2, ScreenHeight / 2 };
+	Vec2 p0;
+	Vec2 p1;
+
+	float x0 = center.x + (-center.y - n * 100.0f) / k;
+	float x1 = center.x + (center.y - n * 100.0f) / k;
+	float y0 = center.y + (-center.x * k + n * 100.0f);
+	float y1 = center.y + (center.x * k + n * 100.0f);
+
+	if (x0 < 0)
+	{	
+		x0 = 0;
+	}
+	else if (x0 > ScreenWidth)
+	{
+		x0 = ScreenWidth - 1;
+	}
+	if (y0 < 0)
+	{
+		y0 = 0;
+	}
+	else if (y0 > ScreenHeight)
+	{
+		y0 = ScreenHeight - 1;
+	}
+	if (x1 < 0)
+	{
+		x1 = 0;
+	}
+	else if (x1 > ScreenWidth)
+	{
+		x1 = ScreenWidth - 1;
+	}
+	if (y1 < 0)
+	{
+		y1 = 0;
+	}
+	else if (y1 > ScreenHeight)
+	{
+		y1 = ScreenHeight - 1;
+	}
+
+	p0 = { x0, y0 };
+	p1 = { x1, y1 };
+
+	if (k < 0)
+	{
+		std::swap(p0.y, p1.y);
+	}
+
+	DrawLine(p0, p1, c);
+	
+}
+
 
 //////////////////////////////////////////////////
 //           Graphics Exception
